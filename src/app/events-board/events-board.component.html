@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="title">Events</h1>
+  <div class="grid grid--4-cols">
+    <app-event-item
+      *ngFor="let event of events | paginate : paginationConfig; let i = index"
+      [event]="event"
+    ></app-event-item>
+  </div>
+  <div class="pagination">
+    <pagination-controls
+      (pageChange)="paginationConfig.currentPage = $event"
+    ></pagination-controls>
+  </div>
+</div>

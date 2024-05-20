@@ -1,0 +1,83 @@
+<div class="container center">
+  <form (ngSubmit)="onSubmit()">
+    <a href="/" class="btn-back">&larr; Go back</a>
+
+    <h1 class="header">Event registration</h1>
+
+    <div class="data-input">
+      <label for="full-name">Full name</label>
+      <input
+        type="text"
+        id="full-name"
+        [(ngModel)]="registrationData.initials"
+        name="fullName"
+        placeholder="John Brown"
+        required
+      />
+    </div>
+    <div class="data-input">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        [(ngModel)]="registrationData.email"
+        name="email"
+        placeholder="mymail@example.com"
+        required
+      />
+    </div>
+    <div class="data-input">
+      <label for="birth">Date of birth</label>
+      <input
+        type="date"
+        id="birth"
+        [(ngModel)]="registrationData.birth"
+        name="birthDate"
+        placeholder="01.01.2005"
+        required
+      />
+    </div>
+    <div class="hear-panel">
+      <span class="hear-title">Where did you hear about this event?</span>
+
+      <div class="hear-options">
+        <div class="hear-option">
+          <input
+            type="radio"
+            id="social-media"
+            [(ngModel)]="registrationData.hearAbout"
+            name="hearAbout"
+            value="socialMedia"
+            required
+          />
+          <label for="social-media">Social media</label>
+        </div>
+
+        <div class="hear-option">
+          <input
+            type="radio"
+            id="friends"
+            [(ngModel)]="registrationData.hearAbout"
+            name="hearAbout"
+            value="friends"
+            required
+          />
+          <label for="friends">Friends</label>
+        </div>
+
+        <div class="hear-option">
+          <input
+            type="radio"
+            id="myself"
+            [(ngModel)]="registrationData.hearAbout"
+            name="hearAbout"
+            value="myself"
+            required
+          />
+          <label for="myself">Found myself</label>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn margin-md-top">Submit</button>
+  </form>
+</div>

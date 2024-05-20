@@ -1,0 +1,80 @@
+form {
+  margin: auto;
+  border: 1px solid #000;
+  max-width: 90rem;
+  padding: 4.2rem;
+}
+
+.header {
+  font-size: 3.2rem;
+  margin-bottom: 4.8rem;
+}
+
+.data-input {
+  margin-bottom: 2.4rem;
+}
+
+.data-input label {
+  display: block;
+  font-size: 2.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.data-input input {
+  border: 1px solid #555;
+  height: 3.2rem;
+  width: 40%;
+  padding: 1rem;
+  font-size: 1.8rem;
+}
+
+.hear-panel {
+  margin: 4.8rem 0;
+}
+
+.hear-title {
+  display: block;
+  font-size: 2.4rem;
+  margin-bottom: 2.4rem;
+}
+
+.hear-options {
+  display: flex;
+  flex-direction: row;
+  gap: 6.4rem;
+}
+
+.hear-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hear-option label {
+  font-size: 2.4rem;
+}
+
+.hear-option input[type="radio"] {
+  height: 2.4rem;
+  width: 2.4rem;
+  vertical-align: middle;
+}
+
+.btn:link,
+.btn:visited,
+.btn {
+  padding: 1.2rem 2.4rem;
+  font-size: 1.8rem;
+  background-color: #eee;
+  border-radius: 1rem;
+  text-decoration: none;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #aaa;
+}

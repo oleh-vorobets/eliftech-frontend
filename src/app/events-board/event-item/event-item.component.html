@@ -1,0 +1,8 @@
+<div class="event-item">
+  <span class="header">{{ event?.title }}</span>
+  <span class="description">{{ event?.description }}</span>
+  <div class="btns">
+    <a [routerLink]="['/registration', event?._id]" class="btn">Register</a>
+    <a [routerLink]="['/participants', event?._id]" class="btn">View</a>
+  </div>
+</div>

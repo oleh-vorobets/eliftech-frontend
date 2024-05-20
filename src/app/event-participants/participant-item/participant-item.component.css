@@ -1,0 +1,20 @@
+.participant-item {
+  background-color: #eee;
+  border: 1px solid #000;
+  padding: 1rem;
+  max-width: 100%;
+  height: auto;
+  color: #333;
+}
+
+.initials {
+  font-size: 2.4rem;
+  font-weight: 500;
+  display: block;
+  margin-bottom: 1.6rem;
+}
+
+.email {
+  font-size: 1.8rem;
+  font-weight: 400;
+}

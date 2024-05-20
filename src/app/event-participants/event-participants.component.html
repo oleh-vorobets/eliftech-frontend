@@ -1,0 +1,18 @@
+<div class="container center">
+  <a href="/" class="btn-back">&larr; Go back</a>
+  <h1 class="title">"Awesome Event" participants</h1>
+  <div class="grid grid--4-cols">
+    <app-participant-item
+      *ngFor="
+        let participant of participants | paginate : paginationConfig;
+        let i = index
+      "
+      [participant]="participant"
+    ></app-participant-item>
+  </div>
+  <div class="pagination">
+    <pagination-controls
+      (pageChange)="paginationConfig.currentPage = $event"
+    ></pagination-controls>
+  </div>
+</div>
