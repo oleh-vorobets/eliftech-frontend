@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Event } from '../types/event.type';
+import { SortOptions } from '../types/sort.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ export class EventsBoardService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.apiUrl);
+  getEvents(sortBy: string, sortOrder: SortOptions): Observable<Event[]> {
+    const url = `${this.apiUrl}?sortBy=${sortBy}&sortOrder=${sortOrder}`;
+    return this.http.get<Event[]>(url);
   }
 }

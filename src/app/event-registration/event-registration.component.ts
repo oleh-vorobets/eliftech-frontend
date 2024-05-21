@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Participant } from '../types/participant.type';
 import { EventRegistrationService } from '../services/event-registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViewChild, ElementRef } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-registration',
@@ -11,10 +13,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EventRegistrationComponent implements OnInit {
   eventId: string | null = null;
 
+  @ViewChild('errorElement', { static: true }) errorElement!: ElementRef;
+
   registrationData: Participant = {
     initials: '',
     email: '',
-    birth: new Date(1),
+    birth: '',
     hearAbout: '',
   };
 
@@ -25,8 +29,8 @@ export class EventRegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.eventId = params.get('eventId');
+    this.route.params.subscribe((params) => {
+      this.eventId = params['id'];
     });
   }
 
@@ -35,13 +39,24 @@ export class EventRegistrationComponent implements OnInit {
       this.registrationData
     );
     if (!validateString) {
-      this.eventService.addParticipant(
-        this.eventId ?? '',
-        this.registrationData
-      );
-      this.router.navigate(['/']);
+      this.eventService
+        .addParticipant(this.eventId!, this.registrationData)
+        .subscribe(
+          () => {
+            this.router.navigate(['/']);
+          },
+          (error: HttpErrorResponse) => {
+            this.errorElement.nativeElement.querySelector(
+              '.error-message'
+            ).textContent = error.error.message;
+            this.errorElement.nativeElement.hidden = false;
+          }
+        );
     } else {
-      alert(validateString); // change later
+      this.errorElement.nativeElement.querySelector(
+        '.error-message'
+      ).textContent = validateString;
+      this.errorElement.nativeElement.hidden = false;
     }
   }
 }

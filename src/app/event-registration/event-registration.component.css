@@ -7,7 +7,7 @@ form {
 
 .header {
   font-size: 3.2rem;
-  margin-bottom: 4.8rem;
+  margin-bottom: 2.4rem;
 }
 
 .data-input {
@@ -77,4 +77,20 @@ form {
 .btn:hover,
 .btn:active {
   background-color: #aaa;
+}
+
+.error {
+  padding: 1.4rem 2.8rem;
+  border-radius: 0.8rem;
+  text-align: left;
+  background-color: #fdf0f0;
+  margin-bottom: 2.4rem;
+}
+
+.error-message {
+  color: #ba2626;
+  line-height: 1.25rem;
+  font-weight: 400;
+  font-size: 1.8rem;
+  line-height: 1.8;
 }

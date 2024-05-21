@@ -1,18 +1,38 @@
 <div class="container center">
   <a href="/" class="btn-back">&larr; Go back</a>
-  <h1 class="title">"Awesome Event" participants</h1>
-  <div class="grid grid--4-cols">
+  <h1 class="title">"{{ eventTitle }}" participants</h1>
+  <div class="search">
+    <div class="option">
+      <label for="inputSelect">Choose Input Type:</label>
+      <select id="inputSelect" name="inputType" [(ngModel)]="searchKey">
+        <option value="initials">Full Name</option>
+        <option value="email">Email</option>
+      </select>
+    </div>
+    <div class="submit-search">
+      <input
+        type="text"
+        [(ngModel)]="searchValue"
+        placeholder="Search participant"
+        class="search-input"
+      />
+      <button class="btn" (click)="onSearchClick()">Search</button>
+    </div>
+  </div>
+  <div class="grid grid--4-cols participants">
     <app-participant-item
       *ngFor="
         let participant of participants | paginate : paginationConfig;
         let i = index
       "
       [participant]="participant"
+      class="item"
     ></app-participant-item>
   </div>
   <div class="pagination">
     <pagination-controls
       (pageChange)="paginationConfig.currentPage = $event"
+      class="item"
     ></pagination-controls>
   </div>
 </div>

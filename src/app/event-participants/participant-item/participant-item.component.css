@@ -2,9 +2,10 @@
   background-color: #eee;
   border: 1px solid #000;
   padding: 1rem;
-  max-width: 100%;
+  width: 100%;
   height: auto;
   color: #333;
+  max-width: 30rem;
 }
 
 .initials {

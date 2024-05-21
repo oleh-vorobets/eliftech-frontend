@@ -2,6 +2,6 @@ export interface Participant {
   _id?: string;
   initials: string;
   email: string;
-  birth: Date;
+  birth: string;
   hearAbout: string;
 }

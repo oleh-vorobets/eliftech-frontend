@@ -1,8 +1,12 @@
 <div class="container center">
-  <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()" method="post">
     <a href="/" class="btn-back">&larr; Go back</a>
 
     <h1 class="header">Event registration</h1>
+
+    <div #errorElement class="error" [hidden]="true">
+      <p class="error-message"></p>
+    </div>
 
     <div class="data-input">
       <label for="full-name">Full name</label>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Event } from '../types/event.type';
 import { PaginationConfig } from '../types/pagination-config.type';
 import { EventsBoardService } from '../services/events-board.service';
+import { SortOptions } from '../types/sort.enum';
+
+type sortByType = 'title' | 'eventDate' | 'organizer' | '';
 
 @Component({
   selector: 'app-events-board',
@@ -10,6 +13,9 @@ import { EventsBoardService } from '../services/events-board.service';
 })
 export class EventsBoardComponent implements OnInit {
   events: Event[] = [];
+
+  sortBy: sortByType = 'title';
+  sortOrder: SortOptions = SortOptions.ASC;
 
   paginationConfig: PaginationConfig = {
     itemsPerPage: 12,
@@ -20,7 +26,11 @@ export class EventsBoardComponent implements OnInit {
   constructor(private eventService: EventsBoardService) {}
 
   ngOnInit() {
-    this.eventService.getEvents().subscribe(
+    this.getEvents(this.sortBy, this.sortOrder);
+  }
+
+  getEvents(sortBy: string, sortOrder: SortOptions) {
+    this.eventService.getEvents(sortBy, sortOrder).subscribe(
       (value: Event[]) => {
         this.events = value;
       },
@@ -28,5 +38,15 @@ export class EventsBoardComponent implements OnInit {
         console.error('Error fetching events:', error);
       }
     );
+  }
+
+  onSortClick(option: sortByType) {
+    if (this.sortBy === option) {
+      this.sortOrder = -this.sortOrder;
+    } else {
+      this.sortOrder = SortOptions.ASC;
+      this.sortBy = option;
+    }
+    this.getEvents(this.sortBy, this.sortOrder);
   }
 }

@@ -1,5 +1,21 @@
 <div class="container">
-  <h1 class="title">Events</h1>
+  <div class="header">
+    <h1 class="title">Events</h1>
+
+    <div class="sort-btns">
+      <button class="btn" (click)="onSortClick('title')">
+        Title {{ sortBy === "title" ? (sortOrder === 1 ? "ASC" : "DESC") : "" }}
+      </button>
+      <button class="btn" (click)="onSortClick('eventDate')">
+        Event date
+        {{ sortBy === "eventDate" ? (sortOrder === 1 ? "ASC" : "DESC") : "" }}
+      </button>
+      <button class="btn" (click)="onSortClick('organizer')">
+        Organizer
+        {{ sortBy === "organizer" ? (sortOrder === 1 ? "ASC" : "DESC") : "" }}
+      </button>
+    </div>
+  </div>
   <div class="grid grid--4-cols">
     <app-event-item
       *ngFor="let event of events | paginate : paginationConfig; let i = index"

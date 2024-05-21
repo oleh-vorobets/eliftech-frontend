@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Event } from '../types/event.type';
 import { HttpClient } from '@angular/common/http';
 import { Participant } from '../types/participant.type';
+import { GetParticipants } from '../types/get-participants.type';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,13 @@ export class EventParticipantsService {
 
   constructor(private http: HttpClient) {}
 
-  getParticipants(eventId: string): Observable<Participant[]> {
-    return this.http.get<Participant[]>(this.apiUrl + '/' + eventId);
+  getParticipants(
+    eventId: string,
+    searchKey?: string,
+    searchValue?: string
+  ): Observable<GetParticipants> {
+    return this.http.get<GetParticipants>(
+      `${this.apiUrl}/${eventId}?searchValue=${searchValue}&searchKey=${searchKey}`
+    );
   }
 }

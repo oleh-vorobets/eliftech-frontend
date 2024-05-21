@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Participant } from '../types/participant.type';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,10 @@ export class EventRegistrationService {
     eventId: string,
     participant: Participant
   ): Observable<string> {
-    return this.http.post<string>(this.apiUrl + '/' + eventId, participant);
+    // participant.birth = new Date(participant.birth);
+    return this.http.post<string>(`${this.apiUrl}/${eventId}`, participant, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 
   validateParticipant(participant: Participant): string {
@@ -39,11 +42,9 @@ export class EventRegistrationService {
 
     const minBirthDate = new Date('1955-01-01');
     const minValidBirthDate = new Date();
+    const birth = new Date(participant.birth);
     minValidBirthDate.setFullYear(minValidBirthDate.getFullYear() - 18);
-    if (
-      participant.birth < minBirthDate ||
-      participant.birth > minValidBirthDate
-    ) {
+    if (birth < minBirthDate || birth > minValidBirthDate) {
       return 'Validation failed: Invalid birthday field';
     }
 
